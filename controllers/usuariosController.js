@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const usuarios = [];
+const nodemailer = require('nodemailer');
 
 const generateToken = (user) => {
   return jwt.sign({ id: user.id, role: user.role }, 'your_secret_key', { expiresIn: '1h' });
@@ -68,14 +69,35 @@ const changePassword = async (req, res) => {
   }
 };
 
-const forgotPassword = (req, res) => {
+const forgotPassword = async (req, res) => {
   const { email } = req.body;
   const user = usuarios.find(u => u.email === email);
+
   if (user) {
-    // Aquí podrías enviar un correo electrónico con un enlace para restablecer la contraseña
-    res.json({ message: 'Password reset link sent' });
-  } else {
-    res.status(404).json({ message: 'User not found' });
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'labriasistemadegetiondepedidos@gmail.com',
+        pass: 'jmtb hxyb qjls qaf'
+      }
+    });
+    
+    // Paso 4: Definir las opciones del correo electrónico
+    const mailOptions = {
+      from: 'labriasistemadegetiondepedidos@gmail.com', // Remitente
+      to: email, // Destinatario
+      subject: 'Asunto del correo', // Asunto
+      text: 'Contenido del correo.' // Cuerpo del mensaje
+    };
+    
+    // Paso 5: Enviar el correo electrónico
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Correo enviado: ' + info.response);
+      }
+    });
   }
 };
 
@@ -102,6 +124,7 @@ const disableUser = (req, res) => {
 };
 
 module.exports = {
+  usuarios,
   register,
   login,
   changePassword,

@@ -4,6 +4,7 @@ const cors = require('cors');
 const hospitalesRoutes = require('./routes/hospitales');
 const usuariosRoutes = require('./routes/usuarios');
 const productosRoutes = require('./routes/productos');
+const pedidosRoutes = require('./routes/pedidos');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json');
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use('/hospitales', hospitalesRoutes);
 app.use('/usuarios', usuariosRoutes);
 app.use('/productos', productosRoutes);
+app.use('/pedidos', pedidosRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.get('/', (req, res) => {
