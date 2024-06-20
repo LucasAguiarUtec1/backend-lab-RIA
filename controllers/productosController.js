@@ -1,7 +1,5 @@
 
 let productos = [
-    { id: 1, nombre: 'Producto 1', descripcion: 'Descripción 1', imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', precio: 10.0 },
-    { id: 2, nombre: 'Producto 2', descripcion: 'Descripción 2', imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', precio: 20.0 },
     { id: 3, nombre: 'Producto 3', descripcion: 'Descripción 3', imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', precio: 100.0 },
     { id: 4, nombre: 'Producto 4', descripcion: 'Descripción 4', imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', precio: 80.0 },
     { id: 1, nombre: 'Producto 1', descripcion: 'Descripción 1', insumos: [{id: 1, cantidad: 3}, {id: 2, cantidad: 1}],imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', precio: 10.0 },
