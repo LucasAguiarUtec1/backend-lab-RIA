@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productosController = require('../controllers/productosController');
 const { verifyToken, isAdmin, isUser } = require('../middleware/auth');
+const { verify } = require('jsonwebtoken');
 
 router.get('/', verifyToken, isUser, (req, res) => {
   /* #swagger.summary = 'Obtiene la lista de productos' */
@@ -39,6 +40,22 @@ router.put('/:id', verifyToken, isAdmin, (req, res) => {
         schema: { $ref: '#/definitions/Producto' }
     } */
   productosController.updateProducto(req, res);
+});
+
+router.put('/:id/insumos/:insumoId', verifyToken, isAdmin, (req, res) => {
+  /* #swagger.summary = 'Añade un insumo al producto' */
+  /* #swagger.tags = ['Productos'] */
+  /* #swagger.security = [{ "BearerAuth": [] }] */
+  /* #swagger.parameters['id'] = { description: 'ID del producto, ID del insumo', type: 'integer', required: true } */
+  productosController.addInsumoToProducto(req, res);
+});
+
+router.delete('/:id/insumos/:insumoId', verifyToken, isAdmin, (req, res) => {
+  /* #swagger.summary = 'Elimina un insumo de un producto' */
+  /* #swagger.tags = ['Productos'] */
+  /* #swagger.security = [{ "BearerAuth": [] }] */
+  /* #swagger.parameters['id'] = { description: 'ID del producto, ID del insumo', type: 'integer', required: true } */
+  productosController.removeInsumoFromProducto(req, res);
 });
 
 router.delete('/:id', verifyToken, isAdmin, (req, res) => {
