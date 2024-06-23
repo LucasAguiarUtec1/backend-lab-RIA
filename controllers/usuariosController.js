@@ -123,6 +123,11 @@ const disableUser = (req, res) => {
   }
 };
 
+const getPanaderos = (req, res) => {
+  const panaderos = usuarios.filter(u => u.role === 'PANADERO');
+  res.json(panaderos);
+}
+
 module.exports = {
   usuarios,
   register,
@@ -131,4 +136,5 @@ module.exports = {
   forgotPassword,
   enableUser,
   disableUser,
+  getPanaderos
 };

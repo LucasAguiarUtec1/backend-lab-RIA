@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usuariosController = require('../controllers/usuariosController');
+const { verifyToken, isAdmin } = require('../middleware/auth');
 
 router.post('/register', (req, res) => {
   /* #swagger.summary = 'Registra un nuevo usuario' */
@@ -66,6 +67,12 @@ router.post('/disable-user', (req, res) => {
         schema: { $ref: '#/definitions/EnableDisableUser' }
     } */
   usuariosController.disableUser(req, res);
+});
+
+router.get('/obtener-panaderos', verifyToken, isAdmin, (req, res) => {
+  /* #swagger.summary = 'Obtiene la lista de panaderos' */
+  /* #swagger.tags = ['Usuarios'] */
+  usuariosController.getPanaderos(req, res);
 });
 
 module.exports = router;
