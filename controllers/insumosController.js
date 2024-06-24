@@ -1,7 +1,6 @@
 let insumos = [
    { id: 1, nombre: 'Harina', unidad: 'Kg'},
    { id: 2, nombre: 'Azucar', unidad: 'Kg'},
-   { id: 3, nombre: 'Leche', unidad: 'Lts'}
 ];
 
 const productosController = require('./productosController');

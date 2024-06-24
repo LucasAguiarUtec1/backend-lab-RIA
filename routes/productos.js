@@ -50,6 +50,7 @@ router.put('/:id/insumos/:insumoId', verifyToken, isAdmin, (req, res) => {
   productosController.addInsumoToProducto(req, res);
 });
 
+
 router.delete('/:id/insumos/:insumoId', verifyToken, isAdmin, (req, res) => {
   /* #swagger.summary = 'Elimina un insumo de un producto' */
   /* #swagger.tags = ['Productos'] */
