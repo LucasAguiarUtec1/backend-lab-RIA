@@ -46,7 +46,21 @@ router.put('/:id/insumos/:insumoId', verifyToken, isAdmin, (req, res) => {
   /* #swagger.summary = 'Añade un insumo al producto' */
   /* #swagger.tags = ['Productos'] */
   /* #swagger.security = [{ "BearerAuth": [] }] */
-  /* #swagger.parameters['id'] = { description: 'ID del producto, ID del insumo', type: 'integer', required: true } */
+  /* #swagger.parameters['id'] = { description: 'ID del producto', type: 'integer', required: true } */
+  /* #swagger.parameters['insumoId'] = { description: 'ID del insumo', type: 'integer', required: true } */
+  /* #swagger.requestBody = {
+        required: true,
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                cantidad: { type: 'number' }
+              }
+            }
+          }
+        }
+      } */
   productosController.addInsumoToProducto(req, res);
 });
 
