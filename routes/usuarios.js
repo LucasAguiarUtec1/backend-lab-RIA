@@ -14,6 +14,22 @@ router.post('/register', (req, res) => {
   usuariosController.register(req, res);
 });
 
+router.post('/reset-password', async (req, res) => {
+  /* #swagger.summary = 'Cambia la contraseña' */
+  /* #swagger.tags = ['Usuarios'] */
+  /* #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Cambia la contraseña de un usuario.',
+        schema: { $ref: '#/definitions/ResetPassword' }
+    } */
+  try {
+    await usuariosController.resetPassword(req, res);
+  } catch (error) {
+    console.error('Error en resetPassword:', error);
+    res.status(500).json({ message: 'Error interno al restablecer la contraseña' });
+  }
+});
+
 router.post('/login', (req, res) => {
   /* #swagger.summary = 'Inicia sesión' */
   /* #swagger.tags = ['Usuarios'] */

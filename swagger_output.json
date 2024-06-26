@@ -187,6 +187,36 @@
         }
       }
     },
+    "/usuarios/reset-password": {
+      "post": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Cambia la contraseña",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Cambia la contraseña de un usuario.",
+            "schema": {
+              "$ref": "#/definitions/ResetPassword"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/usuarios/login": {
       "post": {
         "tags": [
@@ -264,6 +294,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -318,6 +351,33 @@
           },
           "404": {
             "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/usuarios/obtener-panaderos": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Obtiene la lista de panaderos",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -525,30 +585,19 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "description": "ID del producto, ID del insumo"
+            "description": "ID del producto"
           },
           {
             "name": "insumoId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "ID del insumo"
           },
           {
             "name": "authorization",
             "in": "header",
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "cantidad": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
@@ -569,7 +618,22 @@
           {
             "BearerAuth": []
           }
-        ]
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cantidad": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -616,6 +680,196 @@
             "BearerAuth": []
           }
         ]
+      }
+    },
+    "/pedidos/agregar-pedido": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "productosPedido": {
+                  "example": "any"
+                },
+                "precioTotal": {
+                  "example": "any"
+                },
+                "fechaEntrega": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pedidos/obtener-pedidos": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pedidos/obtener-todos-los-pedidos": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pedidos/tomar-pedido": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pedido": {
+                  "example": "any"
+                },
+                "nombre": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pedidos/cambiar-estado-pedido": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pedido": {
+                  "example": "any"
+                },
+                "estado": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/insumos/": {
