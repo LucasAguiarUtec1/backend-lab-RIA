@@ -72,10 +72,17 @@ exports.addPedido = (req, res) => {
         if (!productoDetalle) {
             return null; // o manejar el error si el producto no existe
         }
+        const insumosProducto = productoDetalle.insumos.map(insumo => ({
+          id: insumo.id,
+          cantidad: insumo.cantidad
+        }));
+
         return {
-            nombre: pedidoProducto.nombre, // Solo incluir el nombre del producto
+            id: productoDetalle.id,
+            nombre: productoDetalle.nombre,
             precio: productoDetalle.precio,
-            cantidad: pedidoProducto.cantidad // Asumiendo que pedidoProducto incluye un campo cantidad
+            cantidad: pedidoProducto.cantidad,
+            insumos: insumosProducto
         };
     }).filter(p => p !== null);
     const fechaObj = new Date(fechaEntrega);
@@ -87,7 +94,7 @@ exports.addPedido = (req, res) => {
         precioTotal,
         fecha: fechaFormateada,
         estado: 'pendiente',
-        panadero: 'sinAsignar'
+        panadero: 'sinAsignar',
       };
       pedidos.push(newPedido);
       res.status(201).json(newPedido);
