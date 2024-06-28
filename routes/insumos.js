@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const insumosController = require('../controllers/insumosController');
-const { verifyToken, isAdmin, isUser, isPanadero } = require('../middleware/auth');
+const { verifyToken, isAdmin, isUser } = require('../middleware/auth');
 
 router.get('/', verifyToken, isUser, (req, res) => {
     /* #swagger.summary = 'Obtiene la lista de insumos' */

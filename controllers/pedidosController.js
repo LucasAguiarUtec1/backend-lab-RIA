@@ -7,8 +7,8 @@ let pedidos = [
       precioTotal: 440,
       panadero: 'sinAsignar',
       productos: [
-        { nombre: "Producto 2", precio: 20, cantidad: 2 },
-        { nombre: "Producto 4", precio: 80, cantidad: 5 }
+        { nombre: "Producto 1", precio: 20, cantidad: 2, insumos: [{ id: 1, cantidad: 3 }, { id: 2, cantidad: 1 }] },
+        { nombre: "Producto 4", precio: 80, cantidad: 5, insumos: [{ id: 2, cantidad: 19 }] }
       ]
     },
     {
@@ -19,7 +19,7 @@ let pedidos = [
       precioTotal: 180,
       panadero: 'sinAsignar',
       productos: [
-        { nombre: "Producto 2", precio: 20, cantidad: 2 }
+        { nombre: "Producto 2", precio: 20, cantidad: 2, insumos: [{ id: 2, cantidad: 4 }] }
       ]
     },
     {
@@ -30,7 +30,7 @@ let pedidos = [
       precioTotal: 210,
       panadero: 'sinAsignar',
       productos: [
-        { nombre: "Producto 4", precio: 80, cantidad: 5 }
+        { nombre: "Producto 3", precio: 80, cantidad: 5, insumos: [{ id: 4, cantidad: 3 }] }
       ]
     },
     {
@@ -41,7 +41,7 @@ let pedidos = [
       precioTotal: 180,
       panadero: 'sinAsignar',
       productos: [
-        { nombre: "Producto 2", precio: 20, cantidad: 2 }
+        { nombre: "Producto 2", precio: 20, cantidad: 2, insumos: [{ id: 2, cantidad: 4 }] }
       ]
     },
     {
@@ -52,14 +52,16 @@ let pedidos = [
       precioTotal: 240,
       panadero: 'sinAsignar',
       productos: [
-        { nombre: "Producto 2", precio: 20, cantidad: 2 },
-        { nombre: "Producto 4", precio: 80, cantidad: 5 }
+        { nombre: "Producto 1", precio: 20, cantidad: 2, insumos: [{ id: 1, cantidad: 3 }, { id: 2, cantidad: 1 }] },
+        { nombre: "Producto 4", precio: 80, cantidad: 5, insumos: [{ id: 2, cantidad: 19 }] }
       ]
     }
   ];
   
 const { usuarios } = require('./usuariosController');
 const { productos } = require('./productosController');
+
+exports.pedidos = pedidos;
 
 exports.addPedido = (req, res) => {
     const { email, productosPedido, precioTotal, fechaEntrega } = req.body;
