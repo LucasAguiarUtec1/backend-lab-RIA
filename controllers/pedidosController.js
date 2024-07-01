@@ -8,12 +8,12 @@ let pedidos = [
       panadero: 'sinAsignar',
       productos: [
         { nombre: "Tarta de Manzana", precio: 200, cantidad: 2, insumos: [
-          { id: 1, cantidad: 0.4 }, 
-          { id: 2, cantidad: 0.2 },  
-          { id: 5, cantidad: 0.1 }, 
-          { id: 7, cantidad: 1 },   
-          { id: 8, cantidad: 0.1 },  
-          { id: 19, cantidad: 0.05 } 
+          { id: 1, cantidad: 0.8 }, 
+          { id: 2, cantidad: 0.4 },  
+          { id: 5, cantidad: 0.2 }, 
+          { id: 7, cantidad: 2 },   
+          { id: 8, cantidad: 0.2 },  
+          { id: 19, cantidad: 0.2 } 
         ] },
         { nombre: "Bizcocho de Vainilla", precio: 260, cantidad: 1, insumos: [
           { id: 1, cantidad: 0.5 }, 
@@ -21,7 +21,7 @@ let pedidos = [
           { id: 5, cantidad: 0.2 },  
           { id: 7, cantidad: 3 },    
           { id: 8, cantidad: 0.2 },  
-          { id: 10, cantidad: 0.01 } 
+          { id: 10, cantidad: 0.1 } 
        ] }
       ]
     },
@@ -34,10 +34,10 @@ let pedidos = [
       panadero: 'panaderoBruno@gmail.com',
       productos: [
         { nombre: "Pan Francés", precio: 79, cantidad: 5,  insumos: [
-          { id: 1, cantidad: 1 },   
-          { id: 3, cantidad: 0.02 },
-          { id: 4, cantidad: 0.02 }, 
-          { id: 9, cantidad: 0.6 }  
+          { id: 1, cantidad: 5 },   
+          { id: 3, cantidad: 1.5 },
+          { id: 4, cantidad: 1.5 }, 
+          { id: 9, cantidad: 3 }  
        ] }
       ]
     },
@@ -61,7 +61,7 @@ exports.addPedido = (req, res) => {
         }
         const insumosProducto = productoDetalle.insumos.map(insumo => ({
           id: insumo.id,
-          cantidad: insumo.cantidad
+          cantidad: parseFloat((insumo.cantidad * pedidoProducto.cantidad).toFixed(2))
         }));
 
         return {
