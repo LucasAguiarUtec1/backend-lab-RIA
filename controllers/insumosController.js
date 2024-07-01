@@ -1,11 +1,26 @@
 let insumos = [
-   { id: 1, nombre: 'Harina', unidad: 'Kg'},
-   { id: 2, nombre: 'Azucar', unidad: 'Kg'},
-   { id: 3, nombre: 'Leche', unidad: 'Lts'},
-   { id: 4, nombre: 'Levadura', unidad: 'Gr'},
-   { id: 5, nombre: 'Agua', unidad: 'Lts'},
-   { id: 6, nombre: 'Dulce de Leche', unidad: 'Kg'},
-];
+    { id: 1, nombre: 'Harina de trigo', unidad: 'kg' },
+    { id: 2, nombre: 'Azúcar', unidad: 'kg' },
+    { id: 3, nombre: 'Sal', unidad: 'kg' },
+    { id: 4, nombre: 'Levadura', unidad: 'g' },
+    { id: 5, nombre: 'Mantequilla', unidad: 'kg' },
+    { id: 6, nombre: 'Aceite vegetal', unidad: 'L' },
+    { id: 7, nombre: 'Huevos', unidad: 'docena' },
+    { id: 8, nombre: 'Leche', unidad: 'L' },
+    { id: 9, nombre: 'Agua', unidad: 'L' },
+    { id: 10, nombre: 'Vainilla', unidad: 'ml' },
+    { id: 11, nombre: 'Canela', unidad: 'g' },
+    { id: 12, nombre: 'Chocolate', unidad: 'kg' },
+    { id: 13, nombre: 'Frutas secas', unidad: 'kg' },
+    { id: 14, nombre: 'Esencia de almendra', unidad: 'ml' },
+    { id: 15, nombre: 'Cremor tártaro', unidad: 'g' },
+    { id: 16, nombre: 'Bicarbonato de sodio', unidad: 'g' },
+    { id: 17, nombre: 'Polvo de hornear', unidad: 'g' },
+    { id: 18, nombre: 'Miel', unidad: 'kg' },
+    { id: 19, nombre: 'Sémola de maíz', unidad: 'kg' },
+    { id: 20, nombre: 'Avena', unidad: 'kg' }
+ ];
+ 
 
 const productosController = require('./productosController');
 const { pedidos } = require('./pedidosController');

@@ -1,61 +1,46 @@
 let pedidos = [
     {
       id: 1,
-      email: "user@example2.com",
+      email: "julian@gmail.com",
       estado: "pendiente",
-      fecha: "25/06/2024",
-      precioTotal: 440,
+      fecha: "20/07/2024",
+      precioTotal: 660,
       panadero: 'sinAsignar',
       productos: [
-        { nombre: "Producto 1", precio: 20, cantidad: 2, insumos: [{ id: 1, cantidad: 3 }, { id: 2, cantidad: 1 }] },
-        { nombre: "Producto 4", precio: 80, cantidad: 5, insumos: [{ id: 2, cantidad: 19 }] }
+        { nombre: "Tarta de Manzana", precio: 200, cantidad: 2, insumos: [
+          { id: 1, cantidad: 0.4 }, 
+          { id: 2, cantidad: 0.2 },  
+          { id: 5, cantidad: 0.1 }, 
+          { id: 7, cantidad: 1 },   
+          { id: 8, cantidad: 0.1 },  
+          { id: 19, cantidad: 0.05 } 
+        ] },
+        { nombre: "Bizcocho de Vainilla", precio: 260, cantidad: 1, insumos: [
+          { id: 1, cantidad: 0.5 }, 
+          { id: 2, cantidad: 0.3 },  
+          { id: 5, cantidad: 0.2 },  
+          { id: 7, cantidad: 3 },    
+          { id: 8, cantidad: 0.2 },  
+          { id: 10, cantidad: 0.01 } 
+       ] }
       ]
     },
     {
       id: 2,
-      email: "user@example.com",
+      email: "marta@gmail.com",
       estado: "en preparación",
-      fecha: "29/06/2024",
-      precioTotal: 180,
-      panadero: 'sinAsignar',
+      fecha: "13/07/2024",
+      precioTotal: 395,
+      panadero: 'panaderoBruno@gmail.com',
       productos: [
-        { nombre: "Producto 2", precio: 20, cantidad: 2, insumos: [{ id: 2, cantidad: 4 }] }
+        { nombre: "Pan Francés", precio: 79, cantidad: 5,  insumos: [
+          { id: 1, cantidad: 1 },   
+          { id: 3, cantidad: 0.02 },
+          { id: 4, cantidad: 0.02 }, 
+          { id: 9, cantidad: 0.6 }  
+       ] }
       ]
     },
-    {
-      id: 3,
-      email: "user@example4.com",
-      estado: "listo para entregar",
-      fecha: "28/08/2024",
-      precioTotal: 210,
-      panadero: 'sinAsignar',
-      productos: [
-        { nombre: "Producto 3", precio: 80, cantidad: 5, insumos: [{ id: 4, cantidad: 3 }] }
-      ]
-    },
-    {
-      id: 4,
-      email: "user@example2.com",
-      estado: "entregado",
-      fecha: "17/07/2024",
-      precioTotal: 180,
-      panadero: 'sinAsignar',
-      productos: [
-        { nombre: "Producto 2", precio: 20, cantidad: 2, insumos: [{ id: 2, cantidad: 4 }] }
-      ]
-    },
-    {
-      id: 5,
-      email: "user@example.com",
-      estado: "pendiente",
-      fecha: "28/07/2024",
-      precioTotal: 240,
-      panadero: 'sinAsignar',
-      productos: [
-        { nombre: "Producto 1", precio: 20, cantidad: 2, insumos: [{ id: 1, cantidad: 3 }, { id: 2, cantidad: 1 }] },
-        { nombre: "Producto 4", precio: 80, cantidad: 5, insumos: [{ id: 2, cantidad: 19 }] }
-      ]
-    }
   ];
   
 const { usuarios } = require('./usuariosController');
@@ -70,7 +55,7 @@ exports.addPedido = (req, res) => {
         return res.status(400).json({ message: 'Usuario no encontrado' });
     }
     const productosConDetalles = productosPedido.map(pedidoProducto => {
-        const productoDetalle = productos.find(p => p.nombre === pedidoProducto.nombre);
+      const productoDetalle = productos.find(p => p.nombre === pedidoProducto.nombre);
         if (!productoDetalle) {
             return null; // o manejar el error si el producto no existe
         }
