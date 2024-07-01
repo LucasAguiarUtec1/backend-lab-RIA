@@ -13,7 +13,7 @@ const generateToken = (user) => {
 const createDefaultUsers = async () => {
   const defaultUsers = [
     { email: 'adminRoberto@gmail.com', password: 'admin123', role: 'ADMIN', telefono: '123456789' },
-    { email: 'panaderoEze@gmail.com', password: 'panaderoEzequiel123', role: 'PANADERO', telefono: '098654321' },
+    { email: 'panaderoEze@gmail.com', password: 'panaderoEze123', role: 'PANADERO', telefono: '098654321' },
     { email: 'panaderoBruno@gmail.com', password: 'panaderoBruno123', role: 'PANADERO', telefono: '099278312' },
     { email: 'julian@gmail.com', password: 'julian123', role: 'USER', telefono: '095612378' },
     { email: 'marta@gmail.com', password: 'marta123', role: 'USER', telefono: '098632271' },
