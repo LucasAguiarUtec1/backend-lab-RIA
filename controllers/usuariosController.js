@@ -52,6 +52,8 @@ const register = async (req, res) => {
   res.status(201).json(newUser);
 };
 
+const { pedidos } = require('./pedidosController');
+
 const updateUser = async (req, res) => {
   const { email, newEmail, telefono } = req.body;
 
@@ -61,9 +63,17 @@ const updateUser = async (req, res) => {
     return res.status(404).json({ message: 'Usuario no encontrado' });
   }
   else {
+
+    pedidos.forEach(pedido => {
+      if (pedido.email === email) {
+        pedido.email = newEmail;
+      }
+    });
+    
     user.email = newEmail;
     user.telefono = telefono;
     usuarios[userIndex] = { ...usuarios[userIndex], ...user };
+
     res.json({nombre: user.email, role: user.role, telefono: user.telefono});
   }
 };
