@@ -43,11 +43,11 @@ let pedidos = [
     },
   ];
   
+  exports.pedidos = pedidos;
+  
 const { usuarios } = require('./usuariosController');
 const { productos } = require('./productosController');
-
-exports.pedidos = pedidos;
-
+  
 exports.addPedido = (req, res) => {
     const { email, productosPedido, precioTotal, fechaEntrega } = req.body;
     const usuario = usuarios.find(u => u.email === email);
@@ -120,3 +120,10 @@ exports.cambiarEstado = (req, res) => {
   pedidoCambiar.estado = estado;
   res.json(pedido);
 }
+exports.cambiarMail = (email, newEmail) => {
+  pedidos.forEach(pedido => {
+    if (pedido.email === email) {
+      pedido.email = newEmail;
+    }
+  });
+};
