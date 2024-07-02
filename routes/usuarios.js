@@ -30,6 +30,22 @@ router.post('/reset-password', async (req, res) => {
   }
 });
 
+router.put('/updateUser', async (req, res) => {
+  /* #swagger.summary = 'Actualiza los datos del usuario' */
+  /* #swagger.tags = ['Usuarios'] */
+  /* #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Actualiza todos los datos del usuario.',
+        schema: { $ref: '#/definitions/updateUser' }
+    } */
+  try {
+    await usuariosController.updateUser(req, res);
+  } catch (error) {
+    console.error('Error en updateUser:', error);
+    res.status(500).json({ message: 'Error interno al atualizar la informacion del usuario' });
+  }
+});
+
 router.post('/login', (req, res) => {
   /* #swagger.summary = 'Inicia sesión' */
   /* #swagger.tags = ['Usuarios'] */

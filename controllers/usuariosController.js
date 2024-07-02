@@ -50,12 +50,28 @@ const register = async (req, res) => {
   res.status(201).json(newUser);
 };
 
+const updateUser = async (req, res) => {
+  const { email, newEmail, telefono } = req.body;
+
+  const user = usuarios.find(u => u.email === email);
+  const userIndex = usuarios.findIndex(u => u.email === email);
+  if (!user) {
+    return res.status(404).json({ message: 'Usuario no encontrado' });
+  }
+  else {
+    user.email = newEmail;
+    user.telefono = telefono;
+    usuarios[userIndex] = { ...usuarios[userIndex], ...user };
+    res.json({nombre: user.email, role: user.role, telefono: user.telefono});
+  }
+};
+
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = usuarios.find(u => u.email === email);
   if (user && await bcrypt.compare(password, user.password)) {
     const token = generateToken(user);
-    res.json({ token, nombre: user.email, role: user.role });
+    res.json({ token, nombre: user.email, role: user.role, telefono: user.telefono });
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
   }
@@ -171,5 +187,6 @@ module.exports = {
   resetPassword,
   enableUser,
   disableUser,
-  getPanaderos
+  getPanaderos,
+  updateUser
 };
